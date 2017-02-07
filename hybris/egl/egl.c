@@ -334,7 +334,7 @@ HYBRIS_IMPLEMENT_FUNCTION1(egl, EGLBoolean, eglWaitNative, EGLint);
 
 EGLBoolean _my_eglSwapBuffersWithDamageEXT(EGLDisplay dpy, EGLSurface surface, EGLint *rects, EGLint n_rects)
 {
-	EGLNativeWindowType win;
+	struct _EGLNativeWindowType* win;
 	EGLBoolean ret;
 	HYBRIS_TRACE_BEGIN("hybris-egl", "eglSwapBuffersWithDamageEXT", "");
 	HYBRIS_DLSYSM(egl, &_eglSwapBuffers, "eglSwapBuffers");
