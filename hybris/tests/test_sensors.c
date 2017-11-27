@@ -119,10 +119,10 @@ int main(int argc, char **argv)
         int sensors = smod->get_sensors_list(smod, &sensors_list);
         printf("Got %d sensors\n", sensors);
 
-        int res;
         int poll_sensor = ((argc == 2) ? atoi(argv[1]) : -1);
 
         if (poll_sensor != -1 && poll_sensor < sensors) {
+            int res;
             struct sensor_t const *s = sensors_list + poll_sensor;
             print_sensor_info(poll_sensor, s);
 

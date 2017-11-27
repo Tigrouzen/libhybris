@@ -34,11 +34,10 @@ struct sync_thread_data {
 void *sync_thread(void *data)
 {
     struct sync_thread_data *sync_data = data;
-    struct sync_fence_info_data *info;
-    int err;
     int i;
 
     for (i = 0; i < 2; i++) {
+        int err;
         err = sync_wait(sync_data->fd[i], 10000);
 
         pthread_mutex_lock(&printf_mutex);
@@ -90,6 +89,7 @@ int main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)))
         sync_data[i].thread_no = i;
 
         for (j = 0; j < 2; j++) {
+            struct sync_fence_info_data *info;
             unsigned val = i + j * 3 + 1;
             sprintf(str, "test_fence%d-%d", i, j);
             int fd = sw_sync_fence_create(sync_timeline_fd, str, val);
